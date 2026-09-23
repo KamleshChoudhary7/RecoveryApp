@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Forensic Setup</title>
+  <style>
+    body { background: #121212; color: white; font-family: sans-serif; text-align: center; padding: 20px; }
+    .btn { display: block; width: 90%; margin: 15px auto; padding: 15px; background: #007acc; color: white; text-decoration: none; border-radius: 8px; font-weight: bold; border: none; font-size: 16px; }
+    .btn-copy { background: #28a745; }
+    code { background: #222; padding: 8px; display: block; margin: 10px auto; width: 90%; word-break: break-all; border-radius: 4px; color: #98c379; }
+  </style>
+</head>
+<body>
+  <h2>POLICE FORENSIC PORTAL</h2>
+  
+  <!-- Step 1: APK Direct Download -->
+  <a class="btn" href="termux.apk" download>1. DOWNLOAD TERMUX APK</a>
+
+  <!-- Step 2: Auto Copy One-Liner -->
+  <button class="btn btn-copy" onclick="copyCommand()">2. COPY AUTO-RUN COMMAND</button>
+  
+  <code id="cmd">curl -sL raw.githubusercontent.com/YOUR_USER/cop-forensic/main/run.sh | bash</code>
+
+  <script>
+    function copyCommand() {
+      var text = document.getElementById('cmd').innerText;
+      navigator.clipboard.writeText(text).then(function() {
+        alert("Command Copied! Now open Termux and Long Press -> Paste");
+      });
+    }
+  </script>
+</body>
+</html>
